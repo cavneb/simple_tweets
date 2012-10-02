@@ -1,10 +1,43 @@
 <html>
 <head>
-  <title>My App</title>
+  <title>Simple Tweets</title>
+  <link href="//netdna.bootstrapcdn.com/bootswatch/2.1.0/<%= @styles.sample %>/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-  <h1>Hello from index.erb</h1>
+<div class="container">
+
+  <h1>Simple Tweets</h1>
+
+  <form method="GET" class="well">
+    <input type="text" name="query" placeholder="Search for..." 
+           value="<%= @query %>" class="pull-right" />
+  </form>
+
+  <!-- Display how many tweets we found in the search results -->
+  <h3>Found <%= @tweets.count %> tweets</h3>
+
+  <!-- Table which will show the tweets we get back from the search -->
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <td>Image</td>
+        <td>Username</td>
+        <td>Tweet Message</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% for tweet in @tweets do %>
+      <tr>
+        <td><img src="<%= tweet.profile_image_url %>" /></td>
+        <td><%= tweet.from_user %></td>
+        <td><%= tweet.text %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div><!-- /container -->
 
 </body>
 </html>
